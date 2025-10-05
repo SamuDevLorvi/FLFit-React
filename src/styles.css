@@ -1,0 +1,380 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap");
+
+/* ----------------------------
+   FLFit – Estilos base
+   ---------------------------- */
+* {
+     box-sizing: border-box;
+}
+html,
+body {
+     margin: 0;
+     padding: 0;
+     scroll-behavior: smooth;
+     overflow-x: hidden;
+}
+
+:root {
+     --header-h: 72px;
+     --bg: #0b0f14;
+     --card: #121923;
+     --muted: #8aa0b2;
+     --text: #eaf2f9;
+     --brand: #58d68d; /* verde fitness */
+     --brand-2: #2ecc71;
+     --accent: #53a7ff;
+     --error: #ff6b6b;
+
+     --radius: 18px;
+     --shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+* {
+     box-sizing: border-box;
+}
+html,
+body,
+#root {
+     height: 100%;
+}
+body {
+     margin: 0;
+     font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+     background: var(--bg);
+     color: var(--text);
+     line-height: 1.55;
+
+     /* 👇 Fondo fijo con parallax */
+     background-image: url("/fondo-fitness.jpg"); /* pon aquí tu imagen en /public */
+     background-size: cover; /* cubre toda la pantalla */
+     background-repeat: no-repeat;
+     background-position: center;
+     background-attachment: fixed;
+
+     /* para mejorar la legibilidad */
+     background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+          url("/fondo-fitness.jpg") center/cover fixed no-repeat;
+}
+
+a {
+     color: var(--accent);
+     text-decoration: none;
+}
+a:hover {
+     text-decoration: underline;
+}
+
+/* ----------------------------
+   Layout
+   ---------------------------- */
+.container {
+     width: min(1100px, 92vw);
+     margin-inline: auto;
+     padding: 28px 0;
+}
+
+.section {
+     scroll-margin-top: var(--header-h);
+     margin: 28px 0 52px;
+}
+
+/* separador bonito */
+.divider {
+     height: 1px;
+     width: 100%;
+     background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.18),
+          transparent
+     );
+     border: 0;
+     margin: 32px 0;
+}
+
+/* ----------------------------
+   Hero / Presentación
+   ---------------------------- */
+.hero {
+     position: relative;
+     padding: 5px 0 40px;
+     text-align: center;
+     height: 100svh; /* mejor que 100vh en móviles modernos */
+     min-height: 560px; /* opcional, evita heros demasiado bajos */
+     display: grid;
+     place-items: start center;
+}
+.hero h1 {
+     font-size: clamp(34px, 6vw, 64px);
+     line-height: 1.05;
+     margin: 0 0 10px;
+     letter-spacing: 0.5px;
+     background: linear-gradient(180deg, #fff, #bcd6e8);
+     -webkit-background-clip: text;
+     background-clip: text;
+     color: transparent;
+}
+.hero p.lead {
+     font-size: clamp(16px, 2.5vw, 20px);
+     color: var(--muted);
+     margin: 0 auto 24px;
+     max-width: 740px;
+}
+.hero .cta {
+     display: inline-block;
+     padding: 14px 22px;
+     border-radius: 14px;
+     background: linear-gradient(180deg, var(--brand), var(--brand-2));
+     color: #0a0f13;
+     font-weight: 700;
+     border: 1px solid rgba(255, 255, 255, 0.14);
+     transform: translateZ(0);
+     transition: transform 0.18s ease, filter 0.18s ease;
+}
+.hero .cta:hover {
+     transform: translateY(-2px);
+     filter: brightness(1.05);
+}
+
+/* ----------------------------
+   Precios
+   ---------------------------- */
+.card {
+     background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0)
+     );
+     border: 1px solid rgba(255, 255, 255, 0.06);
+     border-radius: var(--radius);
+     box-shadow: var(--shadow);
+     padding: 28px;
+}
+.grid {
+     display: grid;
+     grid-template-columns: repeat(12, 1fr);
+     gap: 18px;
+}
+.price-grid {
+     margin-top: 18px;
+}
+.price-card {
+     grid-column: span 12;
+     display: flex; /* convierte en flexbox */
+     flex-direction: column; /* apila el contenido en columna */
+     min-height: 100%;
+}
+@media (min-width: 760px) {
+     .price-card {
+          grid-column: span 4;
+     }
+}
+.price-header {
+     margin-bottom: 16px;
+}
+.price-card h3 {
+     text-align: center;
+     margin: 0 0 10px;
+     font-size: 22px;
+}
+.price-tag {
+     text-align: center;
+     font-size: 34px;
+     font-weight: 800;
+     margin: 6px 0 14px;
+}
+.price-feats {
+     text-align: center;
+     flex-grow: 1; /* ocupa todo el espacio disponible */
+     list-style: none;
+     padding: 0;
+     margin: 0 0 18px;
+     color: var(--muted);
+     margin-bottom: 18px;
+}
+.price-cta {
+     margin-top: auto; /* empuja el botón hacia abajo */
+     display: block;
+     text-align: center;
+     padding: 12px 14px;
+     border-radius: 12px;
+     border: 1px solid rgba(255, 255, 255, 0.12);
+     background: rgba(88, 214, 141, 0.1);
+     color: #d9ffe9;
+     font-weight: 700;
+}
+.price-card.featured {
+     background: linear-gradient(
+          180deg,
+          rgba(88, 214, 141, 0.18),
+          rgba(88, 214, 141, 0.06)
+     );
+     border-color: rgba(88, 214, 141, 0.35);
+     transform: translateZ(0);
+}
+.price-cta {
+     margin-top: auto; /* empuja el botón hacia abajo */
+     display: block;
+     text-align: center;
+     padding: 12px 14px;
+     border-radius: 12px;
+     border: 1px solid rgba(255, 255, 255, 0.12);
+     background: rgba(88, 214, 141, 0.1);
+     color: #d9ffe9;
+     font-weight: 700;
+}
+.price-card.featured {
+     background: linear-gradient(
+          180deg,
+          rgba(88, 214, 141, 0.18),
+          rgba(88, 214, 141, 0.06)
+     );
+     border-color: rgba(88, 214, 141, 0.35);
+     transform: translateZ(0);
+}
+.badge {
+     text-align: center;
+     display: inline-block;
+     font-size: 18px;
+     color: #0a0f13;
+     background: var(--brand);
+     border-radius: 999px;
+     padding: 4px 10px;
+     margin-bottom: 8px;
+     font-weight: 700;
+}
+
+/* ----------------------------
+   Formulario
+   ---------------------------- */
+form {
+     display: grid;
+     gap: 14px;
+}
+label {
+     display: flex;
+     flex-direction: column;
+     gap: 8px;
+     font-weight: 600;
+}
+input,
+textarea,
+button {
+     font: inherit;
+}
+input,
+textarea {
+     background: #0f1620;
+     color: var(--text);
+     border: 1px solid rgba(255, 255, 255, 0.14);
+     border-radius: 12px;
+     padding: 12px 14px;
+     outline: none;
+     transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+textarea {
+     min-height: 120px;
+     resize: vertical;
+}
+input:focus,
+textarea:focus {
+     border-color: var(--accent);
+     box-shadow: 0 0 0 3px rgba(83, 167, 255, 0.2);
+}
+
+button[type="submit"] {
+     justify-self: start;
+     background: linear-gradient(180deg, var(--accent), #3c83db);
+     color: #0b0f14;
+     border: 0;
+     border-radius: 12px;
+     padding: 12px 18px;
+     font-weight: 800;
+     cursor: pointer;
+}
+button[type="submit"]:hover {
+     filter: brightness(1.05);
+}
+
+/* ----------------------------
+   Datos de contacto
+   ---------------------------- */
+/* ==== Footer contacto ==== */
+#datos-contacto {
+     background: #0a0f13; /* fondo oscuro elegante */
+     color: #f1f5f9; /* texto claro */
+     padding: 60px 20px 40px;
+     text-align: center;
+     /*      border-top: 1px solid rgba(255, 255, 255, 0.08);
+ */
+}
+
+#datos-contacto h2 {
+     font-size: clamp(20px, 3vw, 28px);
+     margin-bottom: 20px;
+     color: #fff;
+     letter-spacing: 0.5px;
+}
+
+#datos-contacto p {
+     margin: 6px 0;
+     font-size: 16px;
+     color: #cbd5e1;
+}
+
+#datos-contacto a {
+     color: var(--brand, #3b82f6); /* usa tu color de marca si lo tienes */
+     text-decoration: none;
+     transition: color 0.2s ease;
+}
+
+#datos-contacto a:hover {
+     color: var(--brand-2, #60a5fa);
+}
+
+/* Íconos de contacto (si los agregas con <i> o svg) */
+#datos-contacto .icon {
+     margin-right: 8px;
+     color: var(--brand, #3b82f6);
+     vertical-align: middle;
+     font-size: 18px;
+}
+
+/* Layout flexible en pantallas grandes */
+@media (min-width: 768px) {
+     #datos-contacto {
+          text-align: center;
+          display: block;
+          /* grid-template-columns: 1fr 1fr;
+          gap: 40px; */
+     }
+}
+
+/* ----------------------------
+   Tipografía de secciones
+   ---------------------------- */
+.section h2 {
+     font-size: clamp(22px, 2.5vw, 28px);
+     margin: 0 0 16px;
+}
+
+/* Utilidades pequeñas */
+.center {
+     text-align: center;
+}
+.m0 {
+     margin: 0;
+     text-align: center;
+     text-transform: uppercase;
+     font-size: 25px;
+}
+.mt8 {
+     margin-top: 8px;
+}
+.mt16 {
+     margin-top: 16px;
+}
+.mt24 {
+     margin-top: 24px;
+}
